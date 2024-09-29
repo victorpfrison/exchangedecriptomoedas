@@ -36,6 +36,7 @@ int main() {
       if (usuarioLogon == -1) {
         printf("CPF ou senha inválidos. Tente novamente.\n");
       }
+
       break;
     case 2:
       cadastrarUsuario(usuarios, &numUsuarios);
