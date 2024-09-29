@@ -55,9 +55,25 @@ RESULTADOS salvarUsuario(Usuario usuarios[], int *numUsuarios) {
 
 RESULTADOS consultarSaldo(Usuario *usuario){
   printf("Consultar saldo\n");
+    printf("Saldo atual:\n");
+    printf("Saldo em Reais: %.2f\n", usuario->saldoReais);
+    printf("Saldo em Bitcoin: %.2f\n", usuario->saldoBitcoin);
+    printf("Saldo em Ethereum: %.2f\n", usuario->saldoEthereum);
+    printf("Saldo em Ripple: %.2f\n", usuario->saldoRipple);
+    return OK;
 }
 RESULTADOS consultarExtrato(Usuario *usuario){
   printf("Consultar extrato\n");
+    for(int i = 0; i< MAXTRANSACOES; i++){
+        if(usuario->extrato[i][0] != '\0'){// verifica se há transações
+            printf("%s\n", usuario->extrato[i]);
+
+        }else{
+            printf("Não há transações realizadas.\n");
+            break;
+        }
+    }
+    return OK;
 }
 RESULTADOS depositarReais(Usuario *usuario, float valor){
   printf("Depositar reais\n");
