@@ -66,7 +66,7 @@ RESULTADOS consultarExtrato(Usuario *usuario) {
   for (int i = 0; i < MAXTRANSACOES; i++) {
     if (usuario->extrato[i][0] != '\0') { // verifica se há transações
       printf("%s\n", usuario->extrato[i]);
-
+      
     } else {
       printf("Não há transações realizadas até o momento.\n");
       break;
