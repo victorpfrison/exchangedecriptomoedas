@@ -17,6 +17,7 @@ typedef struct{
 typedef enum{
     OK,
     LIMITEUSUARIOS,
+    ERRO,
     ARQUIVO_NAO_ENCONTRADO,
     ABRIR,
     ESCREVER,
