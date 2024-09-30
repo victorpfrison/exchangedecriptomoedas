@@ -83,10 +83,97 @@ RESULTADOS sacarReais(Usuario *usuario, float valor, char senha[]) {
 RESULTADOS comprarCriptomoeda(Usuario *usuario, float valor, char senha[],
                               char nomeCripto[]) {
   printf("Comprar criptomoeda\n");
+  printf("Comprar criptomoeda\n");
+  printf("[1] Bitcoin\n");
+  printf("[2] Ethereum\n");
+  printf("[3] Ripple\n");
+  int opcao;
+  scanf("%d", &opcao);
+
+  printf("Digite o valor em real que deseja trocar:");
+  scanf("%f", &valor);
+  float taxacomBitcoin = 0.02;
+  float taxacomEthereum = 0.01;
+  float taxacomRipple = 0.01;
+
+  if (usuario->saldoReais >= valor) {
+    switch (opcao) {
+    // Bitcoin
+    case 1:
+      usuario->saldoBitcoin += valor * taxacomBitcoin;
+      usuario->saldoReais -= valor;
+      printf("Compra realizada com sucesso!\n");
+      break;
+    // Ethereum
+    case 2:
+      usuario->saldoEthereum += valor * taxacomEthereum;
+      usuario->saldoReais -= valor;
+      printf("Compra realizada com sucesso!\n");
+      break;
+    // Ripple
+    case3:
+      usuario->saldoRipple += valor * taxacomRipple;
+      usuario->saldoReais -= valor;
+      printf("Compra realizada com sucesso!\n");
+      break;
+    default:
+      printf("Opção inválida.\n");
+      break;
+    }
+  } else {
+    printf("Saldo insuficiente para realizar a compra\n");
+  }
 }
 RESULTADOS venderCriptomoeda(Usuario *usuario, float valor, char senha[],
                              char nomeCripto[]) {
+  int opcao;
   printf("Vender criptomoeda\n");
+  printf("Qual criptomoeda deseja vender?\n");
+  printf("[1] Bitcoin\n");
+  printf("[2] Ethereum\n");
+  printf("[3] Ripple\n");
+  scanf("%d", &opcao);
+
+  printf("Quantas criptomoedas deseja vender?\n");
+  scanf("%f", &valor);
+  float taxavenBitcoin = 0.03;
+  float taxavenEthereum = 0.02;
+  float taxavenRipple = 0.01;
+
+  switch (opcao) {
+  // Venda Bitcoin
+  case 1:
+    if (usuario->saldoBitcoin >= valor) {
+      usuario->saldoReais += valor * taxavenBitcoin;
+      usuario->saldoBitcoin -= valor;
+      printf("Venda realizada com sucesso!\n");
+    } else {
+      printf("Valor de Bitcoin insuficiente para venda.\n");
+    }
+    break;
+
+  case2:
+    if (usuario->saldoEthereum >= valor) {
+      usuario->saldoReais += valor * taxavenEthereum;
+      usuario->saldoEthereum -= valor;
+      printf("Venda realizada com sucesso!\n");
+    } else {
+      printf("Valor de Ethereum insuficiente para venda.\n");
+    }
+    break;
+  case3:
+    if (usuario->saldoRipple >= valor) {
+      usuario->saldoReais += valor * taxavenRipple;
+      usuario->saldoRipple -= valor;
+      printf("Venda realizada com sucesso!\n");
+    } else {
+      printf("Valor de Ripple insuficiente para venda.\n");
+    }
+    break;
+  default:
+    printf("Opção inválida.\n");
+    break;
+  }
 }
 RESULTADOS atualizarCotacao() { printf("Atualizar cotacao\n"); }
 void clearBuffer() {

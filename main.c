@@ -78,10 +78,12 @@ int main() {
       funcao[3]; // chamando a funcao sacarReais
       break;
     case 5:
-      funcao[4]; // chamando a funcao comprarCriptomoeda
+      funcao[4](&usuarios[usuarioLogon],
+                NULL); // chamando a funcao comprarCriptomoeda
       break;
     case 6:
-      funcao[5]; // chamando a funcao venderCriptomoeda
+      funcao[5](&usuarios[usuarioLogon],
+                NULL); // chamando a funcao venderCriptomoeda
       break;
     case 7:
       funcao[6]; // chamando a funcao atualizarCotacao
