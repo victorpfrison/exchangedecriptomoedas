@@ -68,11 +68,11 @@ RESULTADOS consultarExtrato(Usuario *usuario) {
     if (usuario->extrato[i][0] != '\0') { // verifica se há transações
       printf("%s\n", usuario->extrato[i]);
       transacao = 1; // encontrou uma transação
-    }
-  }
-   if (!transacao) {
+    } else  if (!transacao) {
         printf("Não há transações realizadas até o momento.\n");
     }
+  }
+  
   return OK;
 }
 RESULTADOS depositarReais(Usuario *usuario, float valor) {
@@ -141,7 +141,32 @@ RESULTADOS venderCriptomoeda(Usuario *usuario, float valor, char senha[],
                              char nomeCripto[]) {
   printf("Vender criptomoeda\n");
 }
-RESULTADOS atualizarCotacao() { printf("Atualizar cotacao\n"); }
+RESULTADOS atualizarCotacao() {
+  srand(time(NULL));
+    // cotação incial moedas
+    float cotacaoBcoin = 600000; 
+    float cotacaoEth = 2000;   
+    float cotacaoRip = 1000;     
+
+    printf("Cotações iniciais:\n");
+    printf("Bitcoin: %.2f\n", cotacaoBcoin);
+    printf("Ethereum: %.2f\n", cotacaoEth);
+    printf("Ripple: %.2f\n", cotacaoRip);
+
+    // atualização das moedas em random
+    for (int i = 0; i < 10; i++) {
+        cotacaoBcoin *= 1 + (rand() % 11 - 5) / 100.0; 
+        cotacaoEth *= 1 + (rand() % 11 - 5) / 100.0; 
+        cotacaoRip *= 1 + (rand() % 11 - 5) / 100.0; 
+        
+        printf("\nAtualização %d:\n", i + 1);
+        printf("Bitcoin: %.2f\n", cotacaoBcoin);
+        printf("Ethereum: %.2f\n", cotacaoEth);
+        printf("Ripple: %.2f\n", cotacaoRip);
+}
+
+}
+
 void clearBuffer() {
   int c;
   while ((c = getchar()) != '\n' && c != EOF)
