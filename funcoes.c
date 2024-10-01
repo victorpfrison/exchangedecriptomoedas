@@ -75,7 +75,6 @@ RESULTADOS consultarExtrato(Usuario *usuario) {
         printf("Não há transações realizadas até o momento.\n");
     }
   }
-
   return OK;
 }
 RESULTADOS depositarReais(Usuario *usuario, float valor) {
@@ -248,7 +247,6 @@ RESULTADOS venderCriptomoeda(Usuario *usuario, float valor, char senha[], char n
     }
       return SUCESSO;
 }
-
 RESULTADOS atualizarCotacao() {
   srand(time(NULL));
     // cotação incial moedas
@@ -266,12 +264,11 @@ RESULTADOS atualizarCotacao() {
         cotacaoBcoin *= 1 + (rand() % 11 - 5) / 100.0; 
         cotacaoEth *= 1 + (rand() % 11 - 5) / 100.0; 
         cotacaoRip *= 1 + (rand() % 11 - 5) / 100.0; 
-
         printf("\nAtualização %d:\n", i + 1);
         printf("Bitcoin: %.2f\n", cotacaoBcoin);
         printf("Ethereum: %.2f\n", cotacaoEth);
         printf("Ripple: %.2f\n", cotacaoRip);
-}
+  }
 
 }
 

@@ -82,7 +82,6 @@ int main() {
     case 5:
       funcao[4](&usuarios[usuarioLogon], NULL); // chamando a funcao comprarCriptomoeda
       break;
-
     case 6:
       funcao[5] (&usuarios[usuarioLogon], NULL); // chamando a funcao venderCriptomoeda;
       break;
