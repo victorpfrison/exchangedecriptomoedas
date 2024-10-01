@@ -61,7 +61,7 @@ int main() {
     printf("0 - Sair\n\t");
     printf("\nEscolha uma opção: ");
     scanf("%d", &opcao);
-
+    float valor;
     switch (opcao) {
     case 1:
       funcao[0](&usuarios[usuarioLogon],
@@ -72,21 +72,22 @@ int main() {
                 NULL); // chamando a funcao consultarExtrato
       break;
     case 3:
-      funcao[2]; // chamando a funcao depositarReais
+      funcao[2](&usuarios[usuarioLogon],&valor);// chamando a funcao depositarReais
+      salvarUsuario(usuarios, &numUsuarios); 
       break;
     case 4:
-      funcao[3]; // chamando a funcao sacarReais
+      funcao[3](&usuarios[usuarioLogon], &valor);
+      salvarUsuario(usuarios, &numUsuarios); 
       break;
     case 5:
-      funcao[4](&usuarios[usuarioLogon],
-                NULL); // chamando a funcao comprarCriptomoeda
+      funcao[4](&usuarios[usuarioLogon], NULL); // chamando a funcao comprarCriptomoeda
       break;
+
     case 6:
-      funcao[5](&usuarios[usuarioLogon],
-                NULL); // chamando a funcao venderCriptomoeda
+      funcao[5] (&usuarios[usuarioLogon], NULL); // chamando a funcao venderCriptomoeda;
       break;
     case 7:
-      funcao[6]; // chamando a funcao atualizarCotacao
+      funcao[6](NULL, NULL); // chamando a funcao atualizarCotacao
       break;
     case 0:
       salvarUsuario(usuarios, &numUsuarios);
