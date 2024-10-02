@@ -141,6 +141,7 @@ RESULTADOS comprarCriptomoeda(Usuario *usuario, float valor, char senha[], char 
     printf("[1] Bitcoin\n");
     printf("[2] Ethereum\n");
     printf("[3] Ripple\n");
+    printf("Digite:");
     scanf("%d", &opcao);
 
     printf("Digite o valor em reais que deseja trocar: ");
@@ -193,9 +194,11 @@ RESULTADOS venderCriptomoeda(Usuario *usuario, float valor, char senha[], char n
     printf("[1] Bitcoin\n");
     printf("[2] Ethereum\n");
     printf("[3] Ripple\n");
+    printf("Digite:");
     scanf("%d", &opcao);
 
     printf("Quantas criptomoedas deseja vender?\n");
+    printf("Digite:");
     scanf("%f", &valor);
 
     float taxavenBitcoin = 0.03;
@@ -260,15 +263,13 @@ RESULTADOS atualizarCotacao() {
     printf("Ripple: %.2f\n", cotacaoRip);
 
     // atualização das moedas em random
-    for (int i = 0; i < 10; i++) {
         cotacaoBcoin *= 1 + (rand() % 11 - 5) / 100.0; 
         cotacaoEth *= 1 + (rand() % 11 - 5) / 100.0; 
         cotacaoRip *= 1 + (rand() % 11 - 5) / 100.0; 
-        printf("\nAtualização %d:\n", i + 1);
+        printf("\nAtualização\n");
         printf("Bitcoin: %.2f\n", cotacaoBcoin);
         printf("Ethereum: %.2f\n", cotacaoEth);
         printf("Ripple: %.2f\n", cotacaoRip);
-  }
 
 }
 
