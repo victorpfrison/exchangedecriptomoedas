@@ -1,105 +1,60 @@
-#include "funcoes.h"
 #include <stdio.h>
+#include <string.h>
+#include "funcoes.h"
 
-typedef RESULTADOS (*funcoes)(Usuario *, void *);
 int main() {
-  // funcoes criada na funcoes.h para as operacoes
-  funcoes funcao[] = {consultarSaldo,  consultarExtrato,   depositarReais,
-                      sacarReais,      comprarCriptomoeda, venderCriptomoeda,
-                      atualizarCotacao};
-  Usuario usuarios[MAXUSUARIO];
-  int numUsuarios = 0;
-  char cpf[12];
-  char senha[6];
-  int usuarioLogon = -1;
-  // carregando usuarios cadastrados
-  carregarUsuario(usuarios, &numUsuarios);
-  // efetuando o login
-  while (usuarioLogon == -1) {
-    printf("PROJETO 1 - EXCHANGE DE CRIPTOMOEDAS\n");
-    printf("{1} para login\n");
-    printf("{2} para cadastrar\n");
-    printf("{0} SAIR\n");
-    printf("DIGITE AQUI: ");
+    Investidor investidores[MAXINVESTIDORES];
+    Criptomoeda criptomoedas[MAXCRIPTOS];
+    int numInvestidores = 0;
+    int numCriptos = 0;
+    
+    
     int opcao;
-    scanf("%d", &opcao);
+    
+   
 
-    switch (opcao) {
-    case 1:
-      printf("Digite seu CPF: ");
-      scanf("%s", cpf);
-      clearBuffer();
-      printf("Digite sua senha: ");
-      scanf("%s", senha);
-      clearBuffer();
-      usuarioLogon = login(usuarios, numUsuarios, cpf, senha);
-      if (usuarioLogon == -1) {
-        printf("CPF ou senha inválidos. Tente novamente.\n");
-      }
-
-      break;
-    case 2:
-      cadastrarUsuario(usuarios, &numUsuarios);
-      break;
-    case 0:
-      printf("Saindo do programa...\n");
-      return 0;
-    default:
-      printf("Opção inválida.\n");
+    // Menu do Administrador
+    while (1) {
+        printf("\n\tMENU PRINCIPAL - ADMINISTRADOR\n\t\n");
+        printf("\t1 - Cadastrar Investidor\n\t");
+        printf("2 - Excluir Investidor\n\t");
+        printf("3 - Cadastrar Criptomoeda\n\t");
+        printf("4 - Excluir Criptomoeda\n\t");
+        printf("5 - Consultar Saldo de Investidor\n\t");
+        printf("6 - Consultar Extrato de Investidor\n\t");
+        printf("7 - Atualizar Cotação de Criptomoeda\n\t");
+        printf("8 - Sair\n\t");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        //loop
+        switch(opcao) {
+            case 1:
+                cadastrarInvestidor(investidores, &numInvestidores);
+                break;
+            case 2:
+                excluirInvestidor(investidores, &numInvestidores);
+                break;
+            case 3:
+                cadastrarCriptomoeda(criptomoedas, &numCriptos);
+                break;
+            case 4:
+                excluirCriptomoeda(criptomoedas, &numCriptos);
+                break;
+            case 5:
+                consultarSaldo(investidores, numInvestidores);
+                break;
+            case 6:
+                consultarExtrato(investidores, numInvestidores);
+                break;
+            case 7:
+                atualizarCotacao(criptomoedas, numCriptos);
+                break;
+            case 8:
+                printf("Saindo do programa...\n");
+                return 0;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
     }
-  }
-  int opcao;
-  do {
-    printf("\n\tMENU PRINCIPAL\n\t\n");
-    printf("\t1 - Consultar saldo\n\t");
-    printf("2 - Consultar extrato\n\t");
-    printf("3 - Depositar reais\n\t");
-    printf("4 - Sacar reais\n\t");
-    printf("5 - Comprar criptomoeda\n\t");
-    printf("6 - Vender criptomoeda\n\t");
-    printf("7 - Atualizar cotacao\n\t");
-    printf("0 - Sair\n\t");
-    printf("\nEscolha uma opção: ");
-    scanf("%d", &opcao);
-    float valor;
-    switch (opcao) {
-    case 1:
-      funcao[0](&usuarios[usuarioLogon],
-                NULL); // chamando a funcao consultarSaldo
-      break;
-    case 2:
-      funcao[1](&usuarios[usuarioLogon],
-                NULL); // chamando a funcao consultarExtrato
-      break;
-    case 3:
-      funcao[2](&usuarios[usuarioLogon],&valor);// chamando a funcao depositarReais
-      salvarUsuario(usuarios, &numUsuarios); 
-      break;
-    case 4:
-      funcao[3](&usuarios[usuarioLogon], &valor);
-      salvarUsuario(usuarios, &numUsuarios); 
-      break;
-    case 5:
-      funcao[4](&usuarios[usuarioLogon], NULL); // chamando a funcao comprarCriptomoeda
-      break;
-    case 6:
-      funcao[5] (&usuarios[usuarioLogon], NULL); // chamando a funcao venderCriptomoeda;
-      break;
-      
-    case 7:
-      funcao[6](NULL, NULL); // chamando a funcao atualizarCotacao
-      break;
-    case 0:
-      salvarUsuario(usuarios, &numUsuarios);
-      printf("Saindo. ATÉ A PRÓXIMA\n");
-      return 0;
-      break;
-    default:
-      printf("OPÇÃO INVALIDA");
-    }
-  }
-
-  while (opcao != 0);
-  salvarUsuario(usuarios, &numUsuarios);
-  return 0;
+    return 0;
 }
