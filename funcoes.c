@@ -15,13 +15,14 @@ void carregarInvestidor(Investidor investidores[], int *numInvestidores){
         fclose(file);
     }
 }
+// funcao salvar
 void salvarInvestidor(Investidor investidores[], int *numInvestidores){
       FILE *file = fopen("investidores.bin", "wb");
     if (file) {
         fwrite(investidores, sizeof(Investidor), *numInvestidores, file);
         fclose(file);
         return 0; 
-    } else {
+    } else { 
         printf("[ERRO] Não foi possível abrir o arquivo.\n");
         return 1; 
 }
