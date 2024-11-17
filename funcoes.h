@@ -36,7 +36,7 @@ typedef enum{
     LER
 }RESULTADOS;
 
-
+//funcoes
 int loginAdministrador(char cpf[12], char senha[50]);
 void carregarInvestidor(Investidor investidores[], int *numInvestidores);
 void salvarInvestidor(Investidor investidores[], int *numInvestidores);

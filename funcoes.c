@@ -69,7 +69,7 @@ void atualizarCotacao(Criptomoeda *criptomoedas, int numCriptos){
   printf("Atualizar Cotacao");
 
 }
-
+//clearbuffer
 void clearBuffer() {
   int c;
   while ((c = getchar()) != '\n' && c != EOF);

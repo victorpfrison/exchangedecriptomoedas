@@ -26,7 +26,7 @@ int main() {
         printf("8 - Sair\n\t");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
-        
+        //loop
         switch(opcao) {
             case 1:
                 cadastrarInvestidor(investidores, &numInvestidores);
