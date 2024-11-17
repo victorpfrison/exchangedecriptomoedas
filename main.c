@@ -2,14 +2,37 @@
 #include <string.h>
 #include "funcoes.h"
 
+
+    
 int main() {
     Investidor investidores[MAXINVESTIDORES];
     Criptomoeda criptomoedas[MAXCRIPTOS];
     int numInvestidores = 0;
     int numCriptos = 0;
-    
-    
+
+    char cpfAdministrador[12], senhaAdministrador[50];
     int opcao;
+
+    printf("Digite o CPF do Administrador: ");
+    scanf("%s", cpfAdministrador);
+    printf("Digite a senha do Administrador: ");
+    scanf("%s", senhaAdministrador);
+
+    if (verificarAdministrador(cpfAdministrador, senhaAdministrador) == 0) {
+        printf("Administrador não encontrado. Deseja cadastrar um novo administrador? (sim /não): ");
+        char escolha;
+        scanf(" %c", &escolha);
+        if (escolha == 's' || escolha == 'S') {
+            cadastrarAdministrador(cpfAdministrador, senhaAdministrador);
+            printf("Faça login.\n");
+            return 0;
+        } else {
+            printf("Até mais!\n");
+            return 0;
+        }
+    } else {
+        printf("Login do Administrador realizado\n");
+    }
     
    
 
