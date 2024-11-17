@@ -57,7 +57,7 @@ void excluirInvestidor(Investidor *investidores, int *numInvestidores) {
         return;
     }
 
-    printf("Digite o CPF do investidor que deseja excluir: ");
+    printf("Digite o CPF do investidor que deseja deletar: ");
     scanf("%s", cpf);
     clearBuffer();
 
