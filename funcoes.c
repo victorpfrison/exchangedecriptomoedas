@@ -48,9 +48,42 @@ void cadastrarInvestidor(Investidor *investidores, int *numInvestidores) {
     salvarInvestidor(investidores, numInvestidores);
     return 0;
 }
-void excluirInvestidor(Investidor *investidores, int *numInvestidores){
-  printf("Excluir Investidor");
+void excluirInvestidor(Investidor *investidores, int *numInvestidores) {
+    char cpf[12];
+    int i, posicao = -1;
+
+    if (*numInvestidores == 0) {
+        printf("Não há investidores cadastrados.\n");
+        return;
+    }
+
+    printf("Digite o CPF do investidor que deseja excluir: ");
+    scanf("%s", cpf);
+    clearBuffer();
+
+    // Procurar o investidor pelo CPF
+    for (i = 0; i < *numInvestidores; i++) {
+        if (strcmp(investidores[i].cpf, cpf) == 0) {
+            posicao = i;
+            break;
+        }
+    }
+
+    if (posicao == -1) {
+        printf("Investidor com CPF %s não encontrado.\n", cpf);
+        return;
+    }
+
+    for (i = posicao; i < *numInvestidores - 1; i++) {
+        investidores[i] = investidores[i + 1];
+    }
+
+    (*numInvestidores)--; 
+    printf("Investidor com CPF %s foi excluído com sucesso.\n", cpf);
+
+    salvarInvestidor(investidores, numInvestidores);
 }
+
 
 void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos){
   printf("Cadastrar Criptomoeda");
