@@ -1,23 +1,34 @@
-#include <stdio.h>  
 #ifndef FUNCOES_H
 #define FUNCOES_H
-#define MAXTRANSACOES 100
-#define MAXUSUARIO 10
 
-// para armazenr informações do usuario
-typedef struct{
-  char cpf[12];
-  char senha[6];
-  float saldoReais;
-  float saldoBitcoin;
-  float saldoEthereum;
-  float saldoRipple;
-  char extrato[100][256];
-} Usuario;
+#define MAXTRANSACOES 100
+#define MAXCRIPTOS 50
+#define MAXINVESTIDORES 10
+
+
+typedef struct {
+    char nome[100];
+    char cpf[12];  
+    char senha[50];
+    float saldoReais;
+    float saldoBitcoin;
+    float saldoEthereum;
+    float saldoRipple;
+    char extrato[MAXTRANSACOES][100];
+} Investidor;
+
+
+typedef struct {
+    char nome[50];
+    float cotacao;
+    float taxaCompra;
+    float taxaVenda;
+} Criptomoeda;
+
+
 typedef enum{
     OK,
     LIMITEUSUARIOS,
-    ERRO,
     ARQUIVO_NAO_ENCONTRADO,
     ABRIR,
     ESCREVER,
@@ -25,22 +36,17 @@ typedef enum{
     LER
 }RESULTADOS;
 
-typedef RESULTADOS (*funcoes)(Usuario*, void *);
 
-// para o login e cadastro
-RESULTADOS login(Usuario usuarios[], int numUsuarios, char cpf[], char senha[]);
-RESULTADOS  carregarUsuario(Usuario usuarios[], int *numUsuarios);
-RESULTADOS  cadastrarUsuario(Usuario usuarios[], int *numUsuarios);
-RESULTADOS  salvarUsuario(Usuario usuarios[], int *numUsuarios);
-// fim do login e cadastro.
-//operações
-RESULTADOS  consultarSaldo(Usuario *usuario);
-RESULTADOS  consultarExtrato(Usuario *usuario);
-RESULTADOS  depositarReais(Usuario *usuario, float valor);
-RESULTADOS  sacarReais(Usuario *usuario, float valor, char senha []);
-RESULTADOS  comprarCriptomoeda(Usuario *usuario, float valor, char senha [], char nomeCripto[]);
-RESULTADOS  venderCriptomoeda(Usuario *usuario, float valor, char senha [], char nomeCripto[]);
-RESULTADOS  atualizarCotacao();
+int loginAdministrador(char cpf[12], char senha[50]);
+void carregarInvestidor(Investidor investidores[], int *numInvestidores);
+void salvarInvestidor(Investidor investidores[], int *numInvestidores);
+void cadastrarInvestidor(Investidor *investidores, int *numInvestidores);
+void excluirInvestidor(Investidor *investidores, int *numInvestidores);
+void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos);
+void excluirCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos);
+void consultarSaldo(Investidor *investidores, int numInvestidores);
+void consultarExtrato(Investidor *investidores, int numInvestidores);
+void atualizarCotacao(Criptomoeda *criptomoedas, int numCriptos);
 void clearBuffer();
 
-#endif 
+#endif  
