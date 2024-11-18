@@ -118,8 +118,35 @@ void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos) {
 void excluirCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos){
   printf("Excluir Cripto");
 }
-void consultarSaldo(Investidor *investidores, int numInvestidores){
-  printf("Consultar Saldo");
+void consultarSaldo(Investidor *investidores, int numInvestidores) {
+    char cpf[12];
+    int encontrado = 0;
+
+    if (numInvestidores == 0) {
+        printf("Não há investidores cadastrados.\n");
+        return;
+    }
+
+    printf("Digite o CPF do investidor: ");
+    scanf("%s", cpf);
+    clearBuffer();
+
+    // Procurar o investidor pelo CPF
+    for (int i = 0; i < numInvestidores; i++) {
+        if (strcmp(investidores[i].cpf, cpf) == 0) {
+            printf("\nSaldo Investidor com CPF %s:\n", cpf);
+            printf("saldo em Reais: R$ %.2f\n", investidores[i].saldoReais);
+            printf("saldo em Bitcoin: %.2f\n", investidores[i].saldoBitcoin);
+            printf("saldo em Ethereum: %.2f\n", investidores[i].saldoEthereum);
+            printf("saldo em Ripple: %.2f\n", investidores[i].saldoRipple);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Investidor com CPF %s não encontrado.\n", cpf);
+    }
 }
 void consultarExtrato(Investidor *investidores, int numInvestidores){
   printf("Consultar extrato");
