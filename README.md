@@ -1,22 +1,18 @@
-## Projeto 1 - Exchange de Criptomoedas
-*Primeiro projeto da disciplina de desenvolvimento de algorítimos: Exchange de Criptomoedas*
+## Projeto 3 - Exchange de Criptomoedas - Administrador
+*Terceiro projeto da disciplina de desenvolvimento de algorítimos: Exchange de Criptomoedas - Administrador*
 ## Objetivo do projeto
-- Criar uma plataforma onde é possível comprar e vender criptomoedas
-## Tipos de Criptomoedas
-- Bitcoin
-- Ethereum
-- Ripple
+- Projeto desenvolvido para o gerenciamento administradores de criptomoedas 
 ## Funcionalidades 
 ### A plataforma conta com diversas funcionalidades
 ### Menu:
-- Cadastro de clientes
-- Login na conta
-- Saldo
-- Extrato
+- Cadastro de novo investidor
+- Excluir investidor
+- Cadastro de criptomoeda
+- Excluir criptomoeda
 - Depositar em reais
 - Sacar em reais
-- Comprar criptomoeda
-- Vender criptomoeda
+- Consultar saldo do investidor
+- Consultar extrato do investidor
 - Atualizar a cotação das criptomoedas
 - Sair
 ## Como pode ser compilado e executado
