@@ -284,7 +284,7 @@ void atualizarCotacao(Criptomoeda *criptomoedas, int numCriptos){
     }
 
     printf("Criptomoeda não encontrada.\n");
-}7
+}
 //clearbuffer
 void clearBuffer() {
   int c;
