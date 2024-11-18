@@ -86,7 +86,7 @@ void excluirInvestidor(Investidor *investidores, int *numInvestidores) {
     scanf("%s", cpf);
     clearBuffer();
 
-    // Procurar o investidor pelo CPF
+    
     for (i = 0; i < *numInvestidores; i++) {
         if (strcmp(investidores[i].cpf, cpf) == 0) {
             posicao = i;
@@ -111,7 +111,7 @@ void excluirInvestidor(Investidor *investidores, int *numInvestidores) {
 
 
 void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos) {
-    if (*numCriptos >= MAXCRIPTOS) {
+  if (*numCriptos >= MAXCRIPTOS) {
         printf("Limite máximo de criptomoedas atingido.\n");
         return;
     }
@@ -136,12 +136,71 @@ void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos) {
     clearBuffer();
 
     criptomoedas[(*numCriptos)++] = novaCripto;
-
-    printf("Criptomoeda cadastrada com sucesso!\n");
+// criando um arquivo para guardar as criptomoedas cadastradas
+    FILE *file = fopen("cripto.txt", "a"); 
+    if (file) {
+        fprintf(file, 
+                "\nNome: %s\n"
+                "Cotação: %.2f\n"
+                "Taxa de Compra: %.2f%%\n"
+                "Taxa de Venda: %.2f%%\n"
+                "--------------------------\n",
+                novaCripto.nome,
+                novaCripto.cotacao,
+                novaCripto.taxaCompra,
+                novaCripto.taxaVenda);
+        fclose(file);
+        printf("Criptomoeda cadastrada com sucesso!\n");
+    } else {
+        printf("[ERRO] Não foi cadastrar criptomoeda.\n");
+    }
 }
 
-void excluirCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos){
-  printf("Excluir Cripto");
+
+void excluirCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos) {
+    char nome[50];
+    printf("\n\tDigite o nome da criptomoeda a ser excluída: ");
+    scanf("%s", nome);
+
+    for (int i = 0; i < *numCriptos; i++) {
+        if (strcmp(criptomoedas[i].nome, nome) == 0) {
+            printf("\n\tCriptomoeda encontrada: %s\n", criptomoedas[i].nome);
+            printf("\tTem certeza que deseja excluir? (S/N): ");
+            char confirmacao;
+            scanf(" %c", &confirmacao);
+            if (confirmacao == 'S' || confirmacao == 's') {
+                for (int j = i; j < *numCriptos - 1; j++) {
+                    criptomoedas[j] = criptomoedas[j + 1];
+                }
+                (*numCriptos)--;
+               
+                FILE *file = fopen("cripto.txt", "w"); 
+                if (file) {
+                    for (int k = 0; k < *numCriptos; k++) {
+                        fprintf(file, 
+                                "Nome: %s\n"
+                                "Cotação: %.2f\n"
+                                "Taxa de Compra: %.2f%%\n"
+                                "Taxa de Venda: %.2f%%\n"
+                                "--------------------------\n",
+                                criptomoedas[k].nome,
+                                criptomoedas[k].cotacao,
+                                criptomoedas[k].taxaCompra,
+                                criptomoedas[k].taxaVenda);
+                    }
+                    fclose(file);
+                    printf("\nCriptomoeda excluída e arquivo atualizado com sucesso.\n");
+                } else {
+                    printf("[ERRO] Não foi possível atualizar o arquivo admin.txt após a exclusão.\n");
+                }
+                return;
+            } else {
+                printf("\nExclusão cancelada.\n");
+                return;
+            }
+        }
+    }
+    printf("Criptomoeda não encontrada.\n");
 }
 void consultarSaldo(Investidor *investidores, int numInvestidores) {
     char cpf[12];
