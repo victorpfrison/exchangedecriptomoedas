@@ -177,9 +177,37 @@ void consultarExtrato(Investidor *investidores, int numInvestidores){
   printf("Consultar extrato");
   }
 void atualizarCotacao(Criptomoeda *criptomoedas, int numCriptos){
-  printf("Atualizar Cotacao");
+ if (numCriptos == 0) {
+        printf("Nenhuma criptomoeda cadastrada.\n");
+        return;
+    }
 
-}
+    char nome[50];
+    printf("Digite o nome da criptomoeda para atualizar a cotação: ");
+    scanf("%s", nome);
+
+    for (int i = 0; i < numCriptos; i++) {
+        if (strcmp(criptomoedas[i].nome, nome) == 0) {
+            printf("\nCriptomoeda encontrada: %s\n", criptomoedas[i].nome);
+            printf("Cotação atual: %.2f\n", criptomoedas[i].cotacao);
+
+            float novaCotacao;
+            printf("Digite a nova cotação: ");
+            scanf("%f", &novaCotacao);
+
+            if (novaCotacao > 0) {
+                criptomoedas[i].cotacao = novaCotacao;
+                printf("\nCotação atualizada com sucesso!\n");
+                printf("Nova cotação de %s: %.2f\n", criptomoedas[i].nome, criptomoedas[i].cotacao);
+            } else {
+                printf("\nA cotação deve ser maior que zero.\n");
+            }
+            return;
+        }
+    }
+
+    printf("Criptomoeda não encontrada.\n");
+}7
 //clearbuffer
 void clearBuffer() {
   int c;
