@@ -85,9 +85,35 @@ void excluirInvestidor(Investidor *investidores, int *numInvestidores) {
 }
 
 
-void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos){
-  printf("Cadastrar Criptomoeda");
-  }
+void cadastrarCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos) {
+    if (*numCriptos >= MAXCRIPTOS) {
+        printf("Limite máximo de criptomoedas atingido.\n");
+        return;
+    }
+
+    Criptomoeda novaCripto;
+
+    printf("\n\nCadastro de nova Criptomoeda\n\n");
+    printf("Digite o nome da criptomoeda: ");
+    scanf("%s", novaCripto.nome);
+    clearBuffer();
+
+    printf("Digite a cotação inicial: ");
+    scanf("%f", &novaCripto.cotacao);
+    clearBuffer();
+
+    printf("Digite a taxa de compra (em %%): ");
+    scanf("%f", &novaCripto.taxaCompra);
+    clearBuffer();
+
+    printf("Digite a taxa de venda (em %%): ");
+    scanf("%f", &novaCripto.taxaVenda);
+    clearBuffer();
+
+    criptomoedas[(*numCriptos)++] = novaCripto;
+
+    printf("Criptomoeda cadastrada com sucesso!\n");
+}
 
 void excluirCriptomoeda(Criptomoeda *criptomoedas, int *numCriptos){
   printf("Excluir Cripto");
