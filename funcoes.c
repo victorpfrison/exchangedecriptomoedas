@@ -4,6 +4,31 @@
 #define SUCESSO 0  // Define SUCESSO como 0
 #define ERRO 1     // Define ERRO como 1
 
+void cadastrarAdministrador(char cpf[12], char senha[50]) {
+    FILE *file = fopen("admin.txt", "w");  
+    
+    if (file) {
+        fprintf(file, "%s\n%s", cpf, senha);  
+        fclose(file);
+        printf("Administrador cadastrado com sucesso!\n");
+    } else {
+        printf("[ERRO] Não foi possível abrir o arquivo de cadastro do administrador.\n");
+    }
+}
+
+int verificarAdministrador(char cpf[12], char senha[50]) {
+    FILE *file = fopen("admin.txt", "r");
+    if (file) {
+        char cpfSalvo[12], senhaSalva[50];
+        fscanf(file, "%s\n%s", cpfSalvo, senhaSalva);
+        fclose(file);
+
+        if (strcmp(cpf, cpfSalvo) == 0 && strcmp(senha, senhaSalva) == 0) {
+            return 1; 
+        }
+    }
+    return 0;
+}
 
 int loginAdministrador(char cpf[12], char senha[50]){
   printf("LOGIN ADM");

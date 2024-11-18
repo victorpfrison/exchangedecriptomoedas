@@ -37,6 +37,8 @@ typedef enum{
 }RESULTADOS;
 
 //funcoes
+void cadastrarAdministrador(char cpf[12], char senha[50]);
+int verificarAdministrador(char cpf[12], char senha[50]);
 int loginAdministrador(char cpf[12], char senha[50]);
 void carregarInvestidor(Investidor investidores[], int *numInvestidores);
 void salvarInvestidor(Investidor investidores[], int *numInvestidores);
