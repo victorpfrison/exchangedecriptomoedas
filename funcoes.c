@@ -30,9 +30,7 @@ int verificarAdministrador(char cpf[12], char senha[50]) {
     return 0;
 }
 
-int loginAdministrador(char cpf[12], char senha[50]){
-  printf("LOGIN ADM");
-}
+
 void carregarInvestidor(Investidor investidores[], int *numInvestidores){
     FILE *file = fopen("investidores.bin", "rb");
     if (file) {
@@ -56,6 +54,8 @@ void cadastrarInvestidor(Investidor *investidores, int *numInvestidores) {
     Investidor novoInvestidor;
     
     printf("\n\nCadastre o Investidor(a)\n\n");
+    printf("Digite seu nome: ");
+    scanf("%s", novoInvestidor.nome);
     printf("Digite seu CPF: ");
     scanf("%s", novoInvestidor.cpf);
     clearBuffer();
@@ -233,7 +233,25 @@ void consultarSaldo(Investidor *investidores, int numInvestidores) {
     }
 }
 void consultarExtrato(Investidor *investidores, int numInvestidores){
-  printf("Consultar extrato");
+void carregarInvestidor(Investidor investidores[], int *numInvestidores); 
+   char cpf[12];
+    printf("Digite o CPF do investidor: ");
+    scanf("%s", cpf);
+
+    for (int i = 0; i < numInvestidores; i++) {
+        if (strcmp(investidores[i].cpf, cpf) == 0) {
+            printf("\nExtrato do Investidor\n");
+            printf("Nome: %s\n", investidores[i].nome);
+            printf("CPF: %s\n", investidores[i].cpf);
+            printf("Saldo em Reais: R$ %.2f\n", investidores[i].saldoReais);
+            printf("Saldo em Bitcoin: %.6f BTC\n", investidores[i].saldoBitcoin);
+            printf("Saldo em Ethereum: %.6f ETH\n", investidores[i].saldoEthereum);
+            printf("Saldo em Ripple: %.6f XRP\n", investidores[i].saldoRipple);
+            printf("----------------------------\n");
+            return;
+        }
+    }
+    printf("Investidor com o CPF %s não encontrado.\n", cpf);
   }
 void atualizarCotacao(Criptomoeda *criptomoedas, int numCriptos){
  if (numCriptos == 0) {
